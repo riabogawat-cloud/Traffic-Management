@@ -64,31 +64,38 @@ st.bar_chart(df.groupby('hour')['Vehicles'].mean())
 st.subheader("💡 AI Route Suggestion (Demo)")
 
 if st.button("Get Route Suggestion"):
-    # Detailed demo suggestions
     if predicted_congestion == 'Low':
         suggestion = (
             f"Traffic is smooth at {location} around {hour}:00 on {day_of_week}.\n"
-            "Normal driving routes are fine. No need for detours."
+            "- Normal driving routes are fine.\n"
+            "- No need for detours.\n"
+            "- Public transport usage optional."
         )
     elif predicted_congestion == 'Medium':
         suggestion = (
             f"Traffic is moderate at {location} around {hour}:00 on {day_of_week}.\n"
-            "Consider minor detours to avoid slow junctions. Public transport could be a good alternative."
+            "- Minor detours can help avoid slower streets.\n"
+            "- Public transport such as buses or metro is recommended for faster travel.\n"
+            "- Keep an eye on traffic apps for minor updates."
         )
     elif predicted_congestion == 'High':
         suggestion = (
             f"⚠️ High congestion at {location} around {hour}:00 on {day_of_week}.\n"
-            "- Avoid main routes if possible.\n"
-            "- Consider using alternate streets or public transport.\n"
-            "- Travel during off-peak hours to reduce delays and emissions."
+            "- Avoid main junction roads if possible.\n"
+            "- Use alternate routes via side streets to save time.\n"
+            "- Consider public transport options:\n"
+            "   • Bus routes: Route A, B, C (closest stops near junction)\n"
+            "   • Metro/Train lines: Line 1, Line 2\n"
+            "- Travel during off-peak hours if possible.\n"
+            "- Helps reduce emissions and traffic delays."
         )
     else:  # Severe
         suggestion = (
             f"🚨 Severe congestion at {location} around {hour}:00 on {day_of_week}.\n"
-            "- Avoid driving through this junction.\n"
-            "- Use public transport, metro, or buses.\n"
-            "- Consider working remotely or delaying travel if possible.\n"
-            "- Follow traffic updates and official route recommendations."
-        )
-
-    st.info(suggestion)
+            "- Avoid driving through this junction entirely.\n"
+            "- Strongly prefer public transport:\n"
+            "   • Metro/Train lines: Line 1, Line 2, Line 3\n"
+            "   • Bus services: Fast-track buses near junction\n"
+            "- Alternate driving routes using side roads or highways recommended.\n"
+            "- If possible, delay travel or work remotely.\n"
+            "- Follow official traffi
