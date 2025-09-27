@@ -9,7 +9,7 @@ from openai import OpenAI
 # -----------------------------
 # OPENAI API KEY
 # -----------------------------
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 # -----------------------------
@@ -88,5 +88,6 @@ if st.button("Get Route Suggestion"):
     
     if predicted_congestion in ['High','Severe']:
         st.warning("⚠️ Congestion is high — consider alternate routes or public transport.")
+
 
 
