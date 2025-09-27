@@ -61,7 +61,7 @@ st.bar_chart(df.groupby('hour')['Vehicles'].mean())
 # -----------------------------
 # Demo AI Route Suggestions
 # -----------------------------
-st.subheader("💡 AI Route Suggestion (Demo)")
+st.subheader("💡 AI Route Suggestion ")
 
 if st.button("Get Route Suggestion"):
     # Detailed demo suggestions
@@ -79,16 +79,17 @@ if st.button("Get Route Suggestion"):
         suggestion = (
             f"⚠️ High congestion at {location} around {hour}:00 on {day_of_week}.\n"
             "- Avoid main routes if possible.\n"
-            "- Consider using alternate streets or public transport.\n"
+            "- Consider using alternate streets or public transport.\n Use alternate routes via side streets to save time. "
             "- Travel during off-peak hours to reduce delays and emissions."
         )
     else:  # Severe
         suggestion = (
             f"🚨 Severe congestion at {location} around {hour}:00 on {day_of_week}.\n"
             "- Avoid driving through this junction.\n"
-            "- Use public transport, metro, or buses.\n"
+            "- Use public transport, metro, or buses.\n Travel during off-peak hours if possible"
             "- Consider working remotely or delaying travel if possible.\n"
-            "- Follow traffic updates and official route recommendations."
+            "- Follow traffic updates and official route recommendations. \n Helps reduce emissions and traffic delays"
         )
 
     st.info(suggestion)
+
