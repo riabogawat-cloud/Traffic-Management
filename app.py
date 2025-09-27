@@ -59,35 +59,18 @@ st.subheader("Average traffic per hour")
 st.bar_chart(df.groupby('hour')['Vehicles'].mean())
 
 # -----------------------------
-# AI Route Suggestions (Optional)
+# Demo AI Route Suggestions
 # -----------------------------
-st.subheader("💡 AI Route Suggestion (Optional)")
+st.subheader("💡 AI Route Suggestion (Demo)")
 
-try:
-    from openai import OpenAI
-    import streamlit as st
+if st.button("Get Route Suggestion"):
+    # Simple demo logic based on congestion
+    if predicted_congestion == 'Low':
+        suggestion = f"Traffic is smooth at {location}. Normal driving routes are fine."
+    elif predicted_congestion == 'Medium':
+        suggestion = f"Traffic is moderate at {location}. Consider minor detours or public transport."
+    else:  # High or Severe
+        suggestion = f"⚠️ Congestion is high at {location}. Take alternate routes or use public transport to reduce emissions."
 
-    # Use Streamlit secrets or uncomment below if you want to paste directly (not recommended)
-    # OPENAI_API_KEY = "YOUR_API_KEY_HERE"
-    # client = OpenAI(api_key=OPENAI_API_KEY)
-
-    # Use secrets if available
-    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-
-    if st.button("Get Route Suggestion"):
-        prompt = f"""
-        The traffic at {location} around {hour}:00 on {day_of_week} is {predicted_congestion}.
-        Suggest optimal driving routes OR public transport options.
-        If congestion is High or Severe, suggest alternate routes to reduce traffic and emissions.
-        """
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role":"user","content":prompt}],
-            max_tokens=150
-        )
-        suggestion = response.choices[0].message.content
-        st.info(f"{suggestion}")
-
-except Exception as e:
-    st.info("⚠️ AI Route Suggestions unavailable (API key not set or invalid).")
+    st.info(suggestion)
 
