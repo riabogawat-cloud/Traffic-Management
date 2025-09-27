@@ -49,7 +49,7 @@ if predicted_congestion == 'Low':
     st.success(f"Predicted Congestion: {predicted_congestion}")
 elif predicted_congestion == 'Medium':
     st.warning(f"Predicted Congestion: {predicted_congestion}")
-else:
+else:  # High or Severe
     st.error(f"Predicted Congestion: {predicted_congestion}")
 
 # -----------------------------
@@ -64,13 +64,31 @@ st.bar_chart(df.groupby('hour')['Vehicles'].mean())
 st.subheader("💡 AI Route Suggestion (Demo)")
 
 if st.button("Get Route Suggestion"):
-    # Simple demo logic based on congestion
+    # Detailed demo suggestions
     if predicted_congestion == 'Low':
-        suggestion = f"Traffic is smooth at {location}. Normal driving routes are fine."
+        suggestion = (
+            f"Traffic is smooth at {location} around {hour}:00 on {day_of_week}.\n"
+            "Normal driving routes are fine. No need for detours."
+        )
     elif predicted_congestion == 'Medium':
-        suggestion = f"Traffic is moderate at {location}. Consider minor detours or public transport."
-    else:  # High or Severe
-        suggestion = f"⚠️ Congestion is high at {location}. Take alternate routes or use public transport to reduce emissions."
+        suggestion = (
+            f"Traffic is moderate at {location} around {hour}:00 on {day_of_week}.\n"
+            "Consider minor detours to avoid slow junctions. Public transport could be a good alternative."
+        )
+    elif predicted_congestion == 'High':
+        suggestion = (
+            f"⚠️ High congestion at {location} around {hour}:00 on {day_of_week}.\n"
+            "- Avoid main routes if possible.\n"
+            "- Consider using alternate streets or public transport.\n"
+            "- Travel during off-peak hours to reduce delays and emissions."
+        )
+    else:  # Severe
+        suggestion = (
+            f"🚨 Severe congestion at {location} around {hour}:00 on {day_of_week}.\n"
+            "- Avoid driving through this junction.\n"
+            "- Use public transport, metro, or buses.\n"
+            "- Consider working remotely or delaying travel if possible.\n"
+            "- Follow traffic updates and official route recommendations."
+        )
 
     st.info(suggestion)
-
