@@ -1,6 +1,5 @@
- Problem Statement:
-"Urban cities struggle with traffic congestion and pollution. 
-Develop an AI system that can analyze real-time traffic data, predict congestion, 
-and suggest optimal routes or public transport scheduling to improve city mobility and reduce emissions."
-Select an appropriate dataset for the application
-Perform preprocessing, select and implement an AI/ML model
+Problem Statement:
+Smart Traffic Management System
+an AI-powered solution to analyze real-time traffic data, predict congestion, and optimize
+routes and public transport scheduling. Implemented data pre-processing, trained ML models for traffic
+prediction, and integrated the system to enhance urban mobility and reduce emissions.
